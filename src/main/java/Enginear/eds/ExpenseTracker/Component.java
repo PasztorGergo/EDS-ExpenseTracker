@@ -1,9 +1,14 @@
 package Enginear.eds.ExpenseTracker;
 
-public class Component{
-    String name;
-    ComponentType type;
-    double amount;
+public abstract class Component{
+    protected String name;
+    protected FinancialType type;
+    protected double amount;
 
-    public Component(){}
+    /**
+     * Turns the data of the instance into JSON formatted string.
+     * 
+     * @return JSON formatted String
+     */
+    public abstract String Stringify();
 }

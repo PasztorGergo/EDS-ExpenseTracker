@@ -1,5 +1,5 @@
 package Enginear.eds.ExpenseTracker;
 
-public class Recurring extends Component {
+public abstract class Recurring extends Component {
     String period;
 }

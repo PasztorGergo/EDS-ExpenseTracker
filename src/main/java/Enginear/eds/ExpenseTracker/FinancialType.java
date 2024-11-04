@@ -1,10 +1,10 @@
 package Enginear.eds.ExpenseTracker;
 
-public class ComponentType{
+public class FinancialType{
     String name;
     String color;
 
-    public ComponentType(){
+    public FinancialType(){
         
     }
 }
