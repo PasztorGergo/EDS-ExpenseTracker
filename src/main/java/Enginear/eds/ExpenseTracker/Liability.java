@@ -1,8 +1,8 @@
 package Enginear.eds.ExpenseTracker;
 
-public class Asset extends Recurring {
+public class Liability extends Recurring {
 
-    public Asset(String name, FinancialType type, double amount, String period){
+    public Liability(String name, FinancialType type, double amount, String period){
         super(name, type, amount, period);
     }
 

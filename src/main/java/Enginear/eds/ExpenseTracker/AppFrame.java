@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 public class AppFrame extends JFrame{
     private ImageIcon appIcon = new ImageIcon("src/main/resources/Logo.png");
+    private Model modelData = new Model();
 
     public AppFrame(){
         setTitle("Expense-tracker | EnginEar's EDS");
@@ -16,5 +17,9 @@ public class AppFrame extends JFrame{
         setIconImage(appIcon.getImage());
         getContentPane().setBackground(new Color(0x07100F));
         setForeground(new Color(0xFFFFFF));
+    }
+
+    public void updateView(Model model){
+        modelData = model;
     }
 }
