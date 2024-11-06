@@ -11,6 +11,26 @@ public abstract class Component{
         this.amount = amount;
     }
 
+    public void setName(String newName){
+        name = newName;
+    }
+
+    public void setType(FinancialType newType){
+        type = newType;
+    }
+
+    public void setAmount(double newAmount){
+        amount = newAmount;
+    }
+
+    @Override
+    public boolean equals(Object component){
+        if(this.getClass() != component.getClass())
+            return false;
+
+        return ((Component)component).name.equals(name);
+    }
+
     /**
      * Turns the data of the instance into JSON formatted string.
      * 

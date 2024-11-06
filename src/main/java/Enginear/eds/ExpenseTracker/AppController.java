@@ -44,4 +44,28 @@ public class AppController {
         }
         updateView();
     }
+
+    public void adjustComponent(Component component, String ...args) throws IllegalArgumentException {
+        if(args.length <= 1){
+            throw new IllegalArgumentException("No given parameters");
+        }
+
+        updateView();
+    }
+
+    private void adjustName(Component component, String name){
+        
+    }
+
+    private void adjustAmount(Component component, double amount){
+
+    }
+
+    private void adjustType(Component component, FinancialType type){
+
+    }
+
+    private void adjustRecurrence(Recurring component, String period){
+
+    }
 }

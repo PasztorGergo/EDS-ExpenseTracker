@@ -3,6 +3,7 @@ package Enginear.eds.ExpenseTracker;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class AppFrame extends JFrame{
@@ -21,5 +22,9 @@ public class AppFrame extends JFrame{
 
     public void updateView(Model model){
         modelData = model;
+    }
+
+    private void createFinancialPanes(){
+        
     }
 }

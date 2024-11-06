@@ -33,4 +33,9 @@ public class AppTest {
 
     }
 
+    @Test
+    public void checkJSONFormat(){
+        
+    }
+
 }

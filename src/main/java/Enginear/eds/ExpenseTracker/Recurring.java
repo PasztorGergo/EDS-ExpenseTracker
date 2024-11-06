@@ -7,4 +7,8 @@ public abstract class Recurring extends Component {
         super(name, type, amount);
         this.period = period;
     }
+
+    public void setPeriod(String newPeriod){
+        period = newPeriod;
+    }
 }
