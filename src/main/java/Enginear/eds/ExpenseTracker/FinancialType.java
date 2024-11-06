@@ -4,8 +4,9 @@ public class FinancialType{
     String name;
     String color;
 
-    public FinancialType(){
-        
+    public FinancialType(String name, String color){
+        this.name = name;
+        this.color = color;
     }
 
     @Override
