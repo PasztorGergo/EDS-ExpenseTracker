@@ -15,6 +15,7 @@ public class AppController {
     }
 
     public void createnewFinancialType(String name, String color){
+        modelData.types.add(new FinancialType(name, color));
         updateView();
     }
 
@@ -54,7 +55,7 @@ public class AppController {
     }
 
     private void adjustName(Component component, String name){
-        
+
     }
 
     private void adjustAmount(Component component, double amount){
