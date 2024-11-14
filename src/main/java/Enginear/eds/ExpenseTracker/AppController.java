@@ -1,5 +1,7 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.BorderLayout;
+
 public class AppController {
     private Model modelData;
     private AppFrame appView;
@@ -7,7 +9,6 @@ public class AppController {
     public AppController(Model model, AppFrame appFrame){
         modelData = model;
         appView = appFrame;
-        appView.setVisible(true);
     }
 
     public Model getModelData(){
