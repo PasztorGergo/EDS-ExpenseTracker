@@ -2,7 +2,6 @@ package Enginear.eds.ExpenseTracker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -27,7 +26,13 @@ public class AppTest {
 
     @Test
     public void checkComponentWithType(){
-
+        controller.createnewFinancialType("newType", "3F56E0");
+        Component comp = new Asset("Gold", controller.getModelData().types.get(0), 1222.03, "1w");
+        assertEquals(comp.amount, 1222.03);
+        assertEquals(comp.name, "Gold");
+        assertEquals(comp.type, controller.getModelData().types.get(0));
+        assertEquals(comp.getCategory(), "asset");
+        assertEquals(((Recurring)comp).period, "1w");
     }
 
     @Test

@@ -37,4 +37,11 @@ public abstract class Component{
      * @return JSON formatted String
      */
     public abstract String Stringify();
+    
+    /**
+     * Returns the category of the component
+     * 
+     * @return Component category String
+     */
+    public abstract String getCategory();
 }

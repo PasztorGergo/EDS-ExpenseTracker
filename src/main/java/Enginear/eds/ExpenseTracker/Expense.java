@@ -12,4 +12,8 @@ public class Expense extends Component {
         throw new UnsupportedOperationException("Unimplemented method 'Stringify'");
     }
     
+    @Override
+    public String getCategory(){
+        return "expense";
+    }
 }

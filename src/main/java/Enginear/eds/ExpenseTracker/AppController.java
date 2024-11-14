@@ -10,6 +10,10 @@ public class AppController {
         appView.setVisible(true);
     }
 
+    public Model getModelData(){
+        return modelData;
+    }
+
     private void updateView(){
         appView.updateView(modelData);
     }
@@ -46,27 +50,19 @@ public class AppController {
         updateView();
     }
 
-    public void adjustComponent(Component component, String ...args) throws IllegalArgumentException {
-        if(args.length <= 1){
-            throw new IllegalArgumentException("No given parameters");
-        }
-
-        updateView();
+    public void adjustName(Component component, String name){
+        modelData.adjustComponentName(component, name);
     }
 
-    private void adjustName(Component component, String name){
-
+    public void adjustAmount(Component component, double amount){
+        modelData.adjustComponentAmount(component, amount);
     }
 
-    private void adjustAmount(Component component, double amount){
-
+    public void adjustType(Component component, FinancialType type){
+        modelData.adjustComponentType(component, type);
     }
 
-    private void adjustType(Component component, FinancialType type){
-
-    }
-
-    private void adjustRecurrence(Recurring component, String period){
-
+    public void adjustRecurrence(Recurring component, String period){
+        modelData.adjustComponentPeriod(component, period);
     }
 }

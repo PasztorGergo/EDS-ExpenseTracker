@@ -12,4 +12,8 @@ public class Liability extends Recurring {
         throw new UnsupportedOperationException("Unimplemented method 'Stringify'");
     }
     
+    @Override
+    public String getCategory(){
+        return "liability";
+    }
 }
