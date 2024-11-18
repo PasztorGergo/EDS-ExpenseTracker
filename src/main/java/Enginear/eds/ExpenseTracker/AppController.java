@@ -1,5 +1,7 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.Color;
+
 public class AppController {
     private Model modelData;
     private AppFrame appView;
@@ -17,7 +19,7 @@ public class AppController {
         appView.updateView(modelData);
     }
 
-    public void createnewFinancialType(String name, String color){
+    public void createnewFinancialType(String name, Color color){
         modelData.types.add(new FinancialType(name, color));
         updateView();
     }

@@ -1,10 +1,12 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.Color;
+
 public class FinancialType{
     String name;
-    String color;
+    Color color;
 
-    public FinancialType(String name, String color){
+    public FinancialType(String name, Color color){
         this.name = name;
         this.color = color;
     }

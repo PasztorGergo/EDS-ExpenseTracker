@@ -38,7 +38,7 @@ public class NewComponentForm extends JPanel {
      * to get the text from the JTextFields of the form 
      */
     private void initButtons(){
-        JButton submitBtn = new JButton();
+        JButton submitBtn = new JButton("Create");
         submitBtn.setBackground(ETheme.PRIMARY.getColor());
         submitBtn.setBorder(BorderFactory.createLineBorder(ETheme.WHITE.getColor(),2));
         submitBtn.addActionListener(new NewComponentListener());
