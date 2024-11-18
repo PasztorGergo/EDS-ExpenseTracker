@@ -62,6 +62,7 @@ public class NewComponentForm extends JPanel {
         for(Object typeName : controller.getModelData().types.stream().map(t -> t.name).toArray()){
             this.typeBox.addItem((String)typeName);
         }
+        this.add(typeBox);
     }
 
     private class ComboBoxListener implements ActionListener{

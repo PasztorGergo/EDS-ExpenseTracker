@@ -82,10 +82,12 @@ public class AppFrame extends JFrame{
     }
 
     private class HoverMouseAdapter extends MouseAdapter{
+        @Override
         public void mouseEntered(java.awt.event.MouseEvent evt) {
             evt.getComponent().setForeground(ETheme.PRIMARY.getColor());
         }
 
+        @Override
         public void mouseExited(java.awt.event.MouseEvent evt) {
             evt.getComponent().setForeground(ETheme.WHITE.getColor());
         }
