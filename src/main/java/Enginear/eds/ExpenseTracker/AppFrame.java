@@ -76,6 +76,11 @@ public class AppFrame extends JFrame{
         refreshFrames();
     }
 
+    public void submitEvent(){
+        replaceMainArea(statementPanel);
+        updateView();
+    }
+
     private void createFinancialPanes(){
         this.add(statementPanel, BorderLayout.CENTER);
         currentMainAreaPanel = statementPanel;

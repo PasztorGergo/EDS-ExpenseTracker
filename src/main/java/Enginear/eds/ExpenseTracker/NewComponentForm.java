@@ -83,12 +83,6 @@ public class NewComponentForm extends JPanel {
 
     }
 
-    private void submitEvent(){
-        AppFrame frame = AppController.getFrame();
-        frame.remove(this);
-        frame.updateView();
-    }
-
     private class NewComponentListener implements ActionListener {
 
         private FinancialType getTypeFromName(){
@@ -106,7 +100,7 @@ public class NewComponentForm extends JPanel {
                 getTypeFromName(), 
                 amountField.getText(), 
                 isRecurring ? recurranceField.getText() : null);
-                submitEvent();
+                AppController.getFrame().submitEvent();
             } catch (IllegalArgumentException err) {
                 err.printStackTrace();
             }
