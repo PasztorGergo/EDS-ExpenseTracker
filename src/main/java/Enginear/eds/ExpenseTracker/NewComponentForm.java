@@ -14,21 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class NewComponentForm extends JPanel {
-    private AppController controller;
     private JTextField nameField = new JTextField();
-    private JComboBox<String> categoryBox = new JComboBox<String>(new Vector<String>(List.of("income","expense","asset","liability")));
-    private JComboBox<String> typeBox = new JComboBox<String>();
+    private JComboBox<String> categoryBox = new JComboBox<>(new Vector<>(List.of("income","expense","asset","liability")));
+    private JComboBox<String> typeBox = new JComboBox<>();
     private JTextField amountField = new JTextField();
     private JTextField recurranceField = new JTextField();
     private boolean isRecurring = false;
     /**
      * Uses the passed actionListener for submit event.
      */
-    public NewComponentForm(AppController controller){
+    public NewComponentForm(){
         this.setLayout(new GridLayout(6,1));
-        this.controller = controller;
-        initButtons();
         initFields();
+        initButtons();
         this.setPreferredSize(new Dimension(440,360));
         this.setVisible(true);
     }
@@ -47,11 +45,16 @@ public class NewComponentForm extends JPanel {
 
     private void initFields(){
         int fieldWidth = 64;
+        List<JTextField> fields = List.of(nameField, amountField, recurranceField);
         
-        for(JTextField field : List.of(nameField, amountField, recurranceField)){
-            field.setColumns(fieldWidth);
-            this.add(field);
+        for(int i = 0; i < fields.size(); i++){
+            fields.get(i).setColumns(fieldWidth);
+            this.add(fields.get(i),i);
         }
+
+        nameField.addFocusListener(new FieldFocusListener("Your component name"));
+        amountField.addFocusListener(new FieldFocusListener("Financial amount in USD"));
+        recurranceField.addFocusListener(new FieldFocusListener("Reucrrance (double + period_char)"));
 
         recurranceField.setEditable(isRecurring);
 
@@ -59,7 +62,10 @@ public class NewComponentForm extends JPanel {
         categoryBox.addActionListener(new ComboBoxListener());
         this.add(categoryBox);
 
-        for(Object typeName : controller.getModelData().types.stream().map(t -> t.name).toArray()){
+        System.out.print(AppController.getModelData().types.get(0));
+
+        for(Object typeName : AppController.getModelData().types.stream().map(t -> t.name).toList()){
+            System.out.print((String)typeName);
             this.typeBox.addItem((String)typeName);
         }
         this.add(typeBox);
@@ -77,22 +83,33 @@ public class NewComponentForm extends JPanel {
 
     }
 
+    private void submitEvent(){
+        AppFrame frame = AppController.getFrame();
+        frame.remove(this);
+        frame.updateView();
+    }
+
     private class NewComponentListener implements ActionListener {
 
         private FinancialType getTypeFromName(){
-            return controller.getModelData()
+            return AppController.getModelData()
             .types.stream()
             .filter(t -> t.name.equals((String)typeBox.getSelectedItem())).toList().get(0);
         }
 
         @Override
-        public void actionPerformed(ActionEvent e) {
-            controller.createNewComponent(
+        public void actionPerformed(ActionEvent e) throws IllegalArgumentException {
+            try {
+                AppController.createNewComponent(
                 (String)categoryBox.getSelectedItem(), 
                 nameField.getText(),
                 getTypeFromName(), 
                 amountField.getText(), 
                 isRecurring ? recurranceField.getText() : null);
+                submitEvent();
+            } catch (IllegalArgumentException err) {
+                err.printStackTrace();
+            }
         }
     
     }

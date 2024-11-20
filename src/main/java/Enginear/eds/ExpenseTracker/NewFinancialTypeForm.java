@@ -14,10 +14,8 @@ public class NewFinancialTypeForm extends JPanel{
     private JButton submitBtn = new JButton("Create");
     private JTextField nameField = new JTextField();
     private JColorChooser colorpicker = new JColorChooser();
-    private AppController controller;
 
-    public NewFinancialTypeForm(AppController controller){
-        this.controller = controller;
+    public NewFinancialTypeForm(){
         this.setLayout(new GridLayout(3,1));
         this.setVisible(true);
         initButton();
@@ -36,7 +34,7 @@ public class NewFinancialTypeForm extends JPanel{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            controller.createnewFinancialType(nameField.getText(), colorpicker.getColor());
+            AppController.createnewFinancialType(nameField.getText(), colorpicker.getColor());
         }
 
     }

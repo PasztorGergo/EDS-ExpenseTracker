@@ -3,28 +3,34 @@ package Enginear.eds.ExpenseTracker;
 import java.awt.Color;
 
 public class AppController {
-    private Model modelData;
-    private AppFrame appView;
+    private static Model modelData = new Model();
+    private static AppFrame appView = new AppFrame();
 
-    public AppController(Model model, AppFrame appFrame){
-        modelData = model;
-        appView = appFrame;
+    public AppController(){
+        modelData.types.add(new FinancialType("Relationship", new Color(0x7a0ac4)));
+        modelData.types.add(new FinancialType("Rent", new Color(0xffcb2e)));
+        modelData.types.add(new FinancialType("Studies", ETheme.PRIMARY.getColor()));
+        modelData.types.add(new FinancialType("Job", new Color(0x3be34f)));
     }
 
-    public Model getModelData(){
+    public static Model getModelData(){
         return modelData;
     }
 
-    private void updateView(){
-        appView.updateView(modelData);
+    public static AppFrame getFrame(){
+        return appView;
     }
 
-    public void createnewFinancialType(String name, Color color){
+    private static void updateView(){
+        appView.updateView();
+    }
+
+    public static void createnewFinancialType(String name, Color color){
         modelData.types.add(new FinancialType(name, color));
         updateView();
     }
 
-    public void createNewComponent(String componentType, String name, FinancialType type, String ...args){
+    public static void createNewComponent(String componentType, String name, FinancialType type, String ...args){
         double amount = Double.parseDouble(args[0]);
         String recurrence = args.length > 1 ? args[1] : null;
         switch(componentType){
@@ -51,19 +57,19 @@ public class AppController {
         updateView();
     }
 
-    public void adjustName(Component component, String name){
+    public static void adjustName(Component component, String name){
         modelData.adjustComponentName(component, name);
     }
 
-    public void adjustAmount(Component component, double amount){
+    public static void adjustAmount(Component component, double amount){
         modelData.adjustComponentAmount(component, amount);
     }
 
-    public void adjustType(Component component, FinancialType type){
+    public static void adjustType(Component component, FinancialType type){
         modelData.adjustComponentType(component, type);
     }
 
-    public void adjustRecurrence(Recurring component, String period){
+    public static void adjustRecurrence(Recurring component, String period){
         modelData.adjustComponentPeriod(component, period);
     }
 }

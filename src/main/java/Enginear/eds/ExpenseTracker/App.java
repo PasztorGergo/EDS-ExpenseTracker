@@ -1,10 +1,9 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.Color;
+
 public class App {
     public static void main(String[] args) {
-        AppFrame appFrame = new AppFrame();
-        Model model = new Model();
-
-        AppController controller = new AppController(model, appFrame);
+        new AppController();
     }
 }

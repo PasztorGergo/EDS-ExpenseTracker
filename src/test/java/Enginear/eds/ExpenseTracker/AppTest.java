@@ -9,21 +9,17 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
-    static Model modelData;
     static AppController controller;
-    static AppFrame view;
 
     @BeforeAll
     public static void init(){
-        modelData = new Model();
-        view = new AppFrame();
-        controller = new AppController(modelData, view);
+        controller = new AppController();
     }
 
     @Test
     public void checkTypeCreation(){
         controller.createnewFinancialType("newType", new Color(0x3F56E0));
-        assertFalse(modelData.types.stream().filter(t -> t.name.equals("newType")).toList().isEmpty());
+        assertFalse(controller.getModelData().types.stream().filter(t -> t.name.equals("newType")).toList().isEmpty());
     }
 
     @Test

@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 public class AppFrame extends JFrame{
     private ImageIcon appIcon = new ImageIcon("src/main/resources/Logo.png");
     private Model modelData = new Model();
-    private AppController controller = new AppController(modelData, this);
     private Sidebar sidebar = new Sidebar();
     private SideBarButton addTypeBtn = new SideBarButton("Add Type");
     private SideBarButton addComponentBtn = new SideBarButton("New Component");
@@ -39,8 +38,8 @@ public class AppFrame extends JFrame{
     }
 
     private void setupButtons(){
-        addComponentBtn.addActionListener(e -> replaceMainArea(new NewComponentForm(controller)));
-        addTypeBtn.addActionListener(e -> replaceMainArea(new NewFinancialTypeForm(controller)));
+        addComponentBtn.addActionListener(e -> replaceMainArea(new NewComponentForm()));
+        addTypeBtn.addActionListener(e -> replaceMainArea(new NewFinancialTypeForm()));
     }
 
     private void setupSidebar(){
@@ -59,8 +58,8 @@ public class AppFrame extends JFrame{
         sidebar.add(credit);
     }
 
-    public void updateView(Model model){
-        modelData = model;
+    public void updateView(){
+        modelData = AppController.getModelData();
         refreshFrames();
     }
 
