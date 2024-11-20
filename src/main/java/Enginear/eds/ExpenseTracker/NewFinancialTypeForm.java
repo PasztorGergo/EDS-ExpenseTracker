@@ -12,13 +12,14 @@ import javax.swing.JTextField;
 
 public class NewFinancialTypeForm extends JPanel{
     private JButton submitBtn = new JButton("Create");
-    private JTextField nameField = new JTextField();
+    private JTextField nameField = new JTextField("Name of the new type");
     private JColorChooser colorpicker = new JColorChooser();
 
     public NewFinancialTypeForm(){
         this.setLayout(new GridLayout(3,1));
         this.setVisible(true);
         initButton();
+        nameField.addFocusListener(new FieldFocusListener("Name of the new type"));
         this.add(nameField);
         this.add(colorpicker);
     }
@@ -35,6 +36,7 @@ public class NewFinancialTypeForm extends JPanel{
         @Override
         public void actionPerformed(ActionEvent e) {
             AppController.createnewFinancialType(nameField.getText(), colorpicker.getColor());
+            AppController.getFrame().submitEvent();
         }
 
     }

@@ -14,11 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class NewComponentForm extends JPanel {
-    private JTextField nameField = new JTextField();
+    private JTextField nameField = new JTextField("Your component name");
     private JComboBox<String> categoryBox = new JComboBox<>(new Vector<>(List.of("income","expense","asset","liability")));
     private JComboBox<String> typeBox = new JComboBox<>();
-    private JTextField amountField = new JTextField();
-    private JTextField recurranceField = new JTextField();
+    private JTextField amountField = new JTextField("Financial amount in USD");
+    private JTextField recurranceField = new JTextField("Reucrrance (double + period_char)");
     private boolean isRecurring = false;
     /**
      * Uses the passed actionListener for submit event.
