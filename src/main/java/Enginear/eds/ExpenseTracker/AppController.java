@@ -69,8 +69,11 @@ public class AppController {
         modelData.adjustComponentType(component, type);
     }
 
-    public static void adjustRecurrence(Recurring component, String period){
-        modelData.adjustComponentPeriod(component, period);
+    public static void adjustRecurrence(Component component, String period){
+        if(component.getCategory().equals("income") || component.getCategory().equals("expense"))
+            return;
+
+        modelData.adjustComponentPeriod((Recurring)component, period);
     }
 
 }
