@@ -1,6 +1,7 @@
 package Enginear.eds.ExpenseTracker;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,10 +38,16 @@ public class NewComponentForm extends JPanel {
      */
     private void initButtons(){
         JButton submitBtn = new JButton("Create");
+        JPanel btnContainer = new JPanel();
+
+        btnContainer.setLayout(new FlowLayout());
+        btnContainer.add(submitBtn);
+        btnContainer.add(new CancelButton());
+
         submitBtn.setBackground(ETheme.PRIMARY.getColor());
         submitBtn.setBorder(BorderFactory.createLineBorder(ETheme.WHITE.getColor(),2));
         submitBtn.addActionListener(new NewComponentListener());
-        this.add(submitBtn);
+        this.add(btnContainer);
     }
 
     private void initFields(){

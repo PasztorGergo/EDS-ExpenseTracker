@@ -25,10 +25,14 @@ public class NewFinancialTypeForm extends JPanel{
     }
 
     private void initButton(){
+        JPanel btnContainer = new JPanel();
+        btnContainer.add(submitBtn);
+        btnContainer.add(new CancelButton());
+
         submitBtn.setBackground(ETheme.PRIMARY.getColor());
         submitBtn.setBorder(BorderFactory.createLineBorder(ETheme.WHITE.getColor(),2));
         submitBtn.addActionListener(new SubmitListener());
-        this.add(submitBtn);
+        this.add(btnContainer);
     }
 
     private class SubmitListener implements ActionListener{
