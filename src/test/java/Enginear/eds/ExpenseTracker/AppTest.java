@@ -75,4 +75,9 @@ class AppTest {
 
     }
 
+    @Test
+    void checkPrintJobCreated(){
+        
+    }
+
 }
