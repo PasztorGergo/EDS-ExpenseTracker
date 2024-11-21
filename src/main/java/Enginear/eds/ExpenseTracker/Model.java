@@ -1,16 +1,18 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
     public List<Component> components;
     public List<FinancialType> types;
+    public List<Line2D> lines;
 
     public Model(){
         components = new ArrayList<>();
         types = new ArrayList<>();
-
+        lines = new ArrayList<>();
     }
 
     public void adjustComponentName(Component component, String name){

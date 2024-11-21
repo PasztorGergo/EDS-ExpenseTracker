@@ -62,10 +62,7 @@ public class NewComponentForm extends JPanel {
         categoryBox.addActionListener(new ComboBoxListener());
         this.add(categoryBox);
 
-        System.out.print(AppController.getModelData().types.get(0));
-
         for(Object typeName : AppController.getModelData().types.stream().map(t -> t.name).toList()){
-            System.out.print((String)typeName);
             this.typeBox.addItem((String)typeName);
         }
         this.add(typeBox);

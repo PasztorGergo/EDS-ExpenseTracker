@@ -3,6 +3,7 @@ package Enginear.eds.ExpenseTracker;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,7 @@ public class StatementPanel extends JPanel {
         for(JPanel panel : panels){
             panel.setBackground(new Color(1f,1f,1f,0.25f));
             panel.setBorder(BorderFactory.createLineBorder(ETheme.WHITE.getColor(),2));
+            panel.setLayout(new FlowLayout());
         }
 
         incomePanel.setMaximumSize(portraitSize);

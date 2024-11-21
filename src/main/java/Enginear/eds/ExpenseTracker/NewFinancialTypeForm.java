@@ -20,8 +20,8 @@ public class NewFinancialTypeForm extends JPanel{
         this.setVisible(true);
         initButton();
         nameField.addFocusListener(new FieldFocusListener("Name of the new type"));
-        this.add(nameField);
-        this.add(colorpicker);
+        this.add(nameField,0);
+        this.add(colorpicker,1);
     }
 
     private void initButton(){

@@ -72,4 +72,5 @@ public class AppController {
     public static void adjustRecurrence(Recurring component, String period){
         modelData.adjustComponentPeriod(component, period);
     }
+
 }
