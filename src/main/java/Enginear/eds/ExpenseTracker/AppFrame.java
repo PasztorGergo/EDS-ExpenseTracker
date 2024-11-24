@@ -9,6 +9,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Enginear.eds.ExpenseTracker.View.NewComponentForm;
+import Enginear.eds.ExpenseTracker.View.NewFinancialTypeForm;
+import Enginear.eds.ExpenseTracker.View.PrintForm;
+import Enginear.eds.ExpenseTracker.View.SideBarButton;
+import Enginear.eds.ExpenseTracker.View.Sidebar;
+import Enginear.eds.ExpenseTracker.View.StatementPanel;
+import Enginear.eds.ExpenseTracker.model.ETheme;
+
 public class AppFrame extends JFrame{
     private ImageIcon appIcon = new ImageIcon("src/main/resources/Logo.png");
     private Model modelData = new Model();

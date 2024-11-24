@@ -1,10 +1,12 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
+
+import Enginear.eds.ExpenseTracker.model.ETheme;
 
 public class SideBarButton extends JButton{
     public SideBarButton(String text){

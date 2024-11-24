@@ -1,9 +1,9 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
 import java.awt.Color;
 
 public class FinancialType{
-    String name;
+    private String name;
     Color color;
 
     public FinancialType(String name, Color color){
@@ -17,5 +17,13 @@ public class FinancialType{
             return false;
 
         return ((FinancialType)type).name.equals(name);
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public Color getColor(){
+        return color;
     }
 }

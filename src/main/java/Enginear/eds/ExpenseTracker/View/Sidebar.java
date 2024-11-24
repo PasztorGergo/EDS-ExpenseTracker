@@ -1,7 +1,9 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import Enginear.eds.ExpenseTracker.model.ETheme;
 
 import java.awt.Color;
 import java.awt.Component;

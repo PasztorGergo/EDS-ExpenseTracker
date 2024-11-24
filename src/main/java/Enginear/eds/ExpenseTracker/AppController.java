@@ -2,6 +2,15 @@ package Enginear.eds.ExpenseTracker;
 
 import java.awt.Color;
 
+import Enginear.eds.ExpenseTracker.model.Asset;
+import Enginear.eds.ExpenseTracker.model.Component;
+import Enginear.eds.ExpenseTracker.model.ETheme;
+import Enginear.eds.ExpenseTracker.model.Expense;
+import Enginear.eds.ExpenseTracker.model.FinancialType;
+import Enginear.eds.ExpenseTracker.model.Income;
+import Enginear.eds.ExpenseTracker.model.Liability;
+import Enginear.eds.ExpenseTracker.model.Recurring;
+
 public class AppController {
     private static Model modelData = new Model();
     private static AppFrame appView = new AppFrame();

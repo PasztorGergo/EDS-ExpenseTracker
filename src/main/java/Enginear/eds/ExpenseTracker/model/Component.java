@@ -1,14 +1,26 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
 public abstract class Component{
-    protected String name;
-    protected FinancialType type;
-    protected double amount;
+    private String name;
+    private FinancialType type;
+    private double amount;
 
     public Component(String name, FinancialType type, double amount){
         this.name = name;
         this.type = type;
         this.amount = amount;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public FinancialType getType(){
+        return type;
+    }
+
+    public double getAmount(){
+        return amount;
     }
 
     public void setName(String newName){

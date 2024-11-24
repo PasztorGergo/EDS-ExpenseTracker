@@ -1,7 +1,7 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
 public abstract class Recurring extends Component {
-    String period;
+    private String period;
 
     public Recurring(String name, FinancialType type, double amount, String period){
         super(name, type, amount);
@@ -11,4 +11,8 @@ public abstract class Recurring extends Component {
     public void setPeriod(String newPeriod){
         period = newPeriod;
     }
+
+    public String getPeriod(){
+        return period;
+    } 
 }

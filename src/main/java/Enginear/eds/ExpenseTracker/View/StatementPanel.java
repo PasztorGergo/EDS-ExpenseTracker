@@ -1,4 +1,4 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import Enginear.eds.ExpenseTracker.model.ETheme;
 
 public class StatementPanel extends JPanel {
     public StatementPanel(){

@@ -1,4 +1,4 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -1,8 +1,8 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
-public class Liability extends Recurring {
+public class Asset extends Recurring {
 
-    public Liability(String name, FinancialType type, double amount, String period){
+    public Asset(String name, FinancialType type, double amount, String period){
         super(name, type, amount, period);
     }
 
@@ -14,6 +14,6 @@ public class Liability extends Recurring {
     
     @Override
     public String getCategory(){
-        return "liability";
+        return "asset";
     }
 }

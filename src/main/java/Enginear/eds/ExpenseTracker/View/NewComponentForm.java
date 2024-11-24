@@ -1,4 +1,4 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -13,6 +13,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Enginear.eds.ExpenseTracker.AppController;
+import Enginear.eds.ExpenseTracker.model.ETheme;
+import Enginear.eds.ExpenseTracker.model.FinancialType;
 
 public class NewComponentForm extends JPanel {
     private JTextField nameField = new JTextField("Your component name");
@@ -69,7 +73,7 @@ public class NewComponentForm extends JPanel {
         categoryBox.addActionListener(new ComboBoxListener());
         this.add(categoryBox);
 
-        for(Object typeName : AppController.getModelData().types.stream().map(t -> t.name).toList()){
+        for(Object typeName : AppController.getModelData().types.stream().map(t -> t.getName()).toList()){
             this.typeBox.addItem((String)typeName);
         }
         this.add(typeBox);
@@ -92,7 +96,7 @@ public class NewComponentForm extends JPanel {
         private FinancialType getTypeFromName(){
             return AppController.getModelData()
             .types.stream()
-            .filter(t -> t.name.equals((String)typeBox.getSelectedItem())).toList().get(0);
+            .filter(t -> t.getName().equals((String)typeBox.getSelectedItem())).toList().get(0);
         }
 
         @Override

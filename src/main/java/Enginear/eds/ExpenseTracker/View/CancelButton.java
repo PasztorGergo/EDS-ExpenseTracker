@@ -1,10 +1,12 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
+
+import Enginear.eds.ExpenseTracker.AppController;
 
 public class CancelButton extends JButton{
     public CancelButton(){

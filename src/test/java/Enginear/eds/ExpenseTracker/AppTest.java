@@ -7,22 +7,26 @@ import java.awt.Color;
 
 import org.junit.jupiter.api.Test;
 
+import Enginear.eds.ExpenseTracker.model.Asset;
+import Enginear.eds.ExpenseTracker.model.Component;
+import Enginear.eds.ExpenseTracker.model.Recurring;
+
 class AppTest {
     @Test
     void checkTypeCreation(){
         AppController.createnewFinancialType("newType", new Color(0x3F56E0));
-        assertFalse(AppController.getModelData().types.stream().filter(t -> t.name.equals("newType")).toList().isEmpty());
+        assertFalse(AppController.getModelData().types.stream().filter(t -> t.getName().equals("newType")).toList().isEmpty());
     }
 
     @Test
     void checkComponentWithType(){
         AppController.createnewFinancialType("newType", new Color(0x3F56E0));
         Component comp = new Asset("Gold", AppController.getModelData().types.get(0), 1222.03, "1w");
-        assertEquals(comp.amount, 1222.03);
-        assertEquals(comp.name, "Gold");
-        assertEquals(comp.type, AppController.getModelData().types.get(0));
+        assertEquals(comp.getAmount(), 1222.03);
+        assertEquals(comp.getName(), "Gold");
+        assertEquals(comp.getType(), AppController.getModelData().types.get(0));
         assertEquals(comp.getCategory(), "asset");
-        assertEquals(((Recurring)comp).period, "1w");
+        assertEquals(((Recurring)comp).getPeriod(), "1w");
     }
 
     @Test
@@ -32,22 +36,22 @@ class AppTest {
         AppController.createNewComponent("asset", "Gold", AppController.getModelData().types.get(0), "1222.03", "1w");
         
         Component comp = AppController.getModelData().components.get(0);
-        assertEquals(1222.03, comp.amount);
-        assertEquals("Gold",comp.name);
+        assertEquals(1222.03, comp.getAmount());
+        assertEquals("Gold",comp.getName());
         assertEquals("asset", comp.getCategory());
-        assertEquals(AppController.getModelData().types.get(0), comp.type);
+        assertEquals(AppController.getModelData().types.get(0), comp.getType());
 
         AppController.adjustName(comp, "Silver");
-        assertEquals("Silver", comp.name);
+        assertEquals("Silver", comp.getName());
 
         AppController.adjustAmount(comp, 1001.45);
-        assertEquals(1001.45, comp.amount);
+        assertEquals(1001.45, comp.getAmount());
 
         AppController.adjustRecurrence(comp, "1m");
-        assertEquals("1m", ((Recurring)comp).period);
+        assertEquals("1m", ((Recurring)comp).getPeriod());
 
         AppController.adjustType(comp, AppController.getModelData().types.get(1));
-        assertEquals(AppController.getModelData().types.get(1), comp.type);
+        assertEquals(AppController.getModelData().types.get(1), comp.getType());
     }
 
     @Test

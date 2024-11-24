@@ -4,6 +4,10 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import Enginear.eds.ExpenseTracker.model.Component;
+import Enginear.eds.ExpenseTracker.model.FinancialType;
+import Enginear.eds.ExpenseTracker.model.Recurring;
+
 public class Model {
     public List<Component> components;
     public List<FinancialType> types;

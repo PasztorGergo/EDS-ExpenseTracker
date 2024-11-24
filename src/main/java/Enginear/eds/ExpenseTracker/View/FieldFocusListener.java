@@ -1,4 +1,4 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;

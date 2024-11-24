@@ -1,8 +1,8 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
-public class Income extends Component{
+public class Expense extends Component {
 
-    public Income(String name, FinancialType type, double amount){
+    public Expense(String name, FinancialType type, double amount){
         super(name, type, amount);
     }
 
@@ -14,6 +14,6 @@ public class Income extends Component{
     
     @Override
     public String getCategory(){
-        return "income";
+        return "expense";
     }
 }

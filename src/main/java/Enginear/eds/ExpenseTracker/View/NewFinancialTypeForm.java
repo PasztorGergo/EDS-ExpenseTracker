@@ -1,4 +1,4 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.View;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Enginear.eds.ExpenseTracker.AppController;
+import Enginear.eds.ExpenseTracker.model.ETheme;
 
 public class NewFinancialTypeForm extends JPanel{
     private JButton submitBtn = new JButton("Create");

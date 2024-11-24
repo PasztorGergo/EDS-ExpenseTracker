@@ -1,9 +1,9 @@
-package Enginear.eds.ExpenseTracker;
+package Enginear.eds.ExpenseTracker.model;
 
-public class Expense extends Component {
+public class Liability extends Recurring {
 
-    public Expense(String name, FinancialType type, double amount){
-        super(name, type, amount);
+    public Liability(String name, FinancialType type, double amount, String period){
+        super(name, type, amount, period);
     }
 
     @Override
@@ -14,6 +14,6 @@ public class Expense extends Component {
     
     @Override
     public String getCategory(){
-        return "expense";
+        return "liability";
     }
 }
