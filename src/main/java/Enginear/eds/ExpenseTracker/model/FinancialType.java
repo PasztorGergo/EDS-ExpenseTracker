@@ -26,4 +26,8 @@ public class FinancialType{
     public Color getColor(){
         return color;
     }
+
+    public String getHexColor(){
+        return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+    }
 }

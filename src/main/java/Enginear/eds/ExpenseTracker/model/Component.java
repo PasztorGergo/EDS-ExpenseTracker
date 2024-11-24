@@ -48,7 +48,9 @@ public abstract class Component{
      * 
      * @return JSON formatted String
      */
-    public abstract String Stringify();
+    public String Stringify(){
+        return String.format("{\n\t\"name\": \"%s\",\n\t\"amount\": %2.f,\n\t\"type\": \"%s\"}",name,amount,type.getName());
+    }
     
     /**
      * Returns the category of the component
