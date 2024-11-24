@@ -40,6 +40,7 @@ public class AppFrame extends JFrame{
     private void setupButtons(){
         addComponentBtn.addActionListener(e -> replaceMainArea(new NewComponentForm()));
         addTypeBtn.addActionListener(e -> replaceMainArea(new NewFinancialTypeForm()));
+        printBtn.addActionListener(e -> replaceMainArea(new PrintForm()));
     }
 
     private void setupSidebar(){

@@ -1,41 +1,23 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.print.PageFormat;
-import java.awt.print.Paper;
-import java.awt.print.Printable;
-import java.awt.print.PrinterException;
 import java.util.List;
 
-public class PrintFormDesign implements Printable{
+import javax.swing.JPanel;
+
+public class PrintDesignComponent extends JPanel {
     private int width = 595;
     private int height = 842;
-    private Font headerFont = new Font(Font.SANS_SERIF, Font.PLAIN, 32);
     private Font itemFont = new Font(Font.SANS_SERIF, Font.PLAIN, 16);
-
-    public PrintFormDesign(){
+    private Font headerFont = new Font(Font.SANS_SERIF, Font.PLAIN, 32);
+    PrintDesignComponent(){
+        this.setPreferredSize(new Dimension(width, height));
     }
-
-    @Override
-    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-        Graphics2D g2D = (Graphics2D) graphics;
-        Paper paper = new Paper();
-        paper.setSize(width, height);
-
-        if(pageIndex > 0)
-            return NO_SUCH_PAGE;
-        
-        pageFormat.setOrientation(pageFormat.PORTRAIT);
-        pageFormat.setPaper(paper);
-        renderDesign(g2D);
-        
-        return PAGE_EXISTS;
-    }
-
-    private void renderDesign(Graphics2D g){
+    
+    public void renderDesign(Graphics2D g){
         int x = 16;
         int y = 16;
         for(String title : List.of("income","expense","asset","liability")){
@@ -48,9 +30,8 @@ public class PrintFormDesign implements Printable{
                 y += 32;
             }
         }
-        setHeight(y);
     }
-
+    
     private void createHeader(int x, int y, String title, Graphics2D g){
         int headerHeight = 44;
         int headerWidth = 320;
@@ -63,15 +44,12 @@ public class PrintFormDesign implements Printable{
         g.setFont(headerFont);
         g.drawString(title.toUpperCase(), x+16, y+32);
     }
-
+    
     private void createItem(int x, int y, Component item, Graphics2D g){
         g.setFont(itemFont);
         g.setColor(item.type.color);
         g.drawString(item.name, x+32, y+16);
         g.drawString("$"+item.amount, width-128, y+16);
     }
-
-    private void setHeight(int h){
-        height = h;
-    }
+    
 }
