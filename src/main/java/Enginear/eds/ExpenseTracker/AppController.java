@@ -39,6 +39,15 @@ public class AppController {
         updateView();
     }
 
+    /**
+     * Creates and add a new financial component to the model.
+     * Mostly used only in the forms.
+     * 
+     * @param componentType - income, expense, asset, or liability. Given other values will result in skipping the creation.
+     * @param name - Unique identifier for the component
+     * @param type - The FinancialType that belongs to the component
+     * @param args - Strinified double and period if the component has recurring attribute
+    */
     public static void createNewComponent(String componentType, String name, FinancialType type, String ...args){
         double amount = Double.parseDouble(args[0]);
         String recurrence = args.length > 1 ? args[1] : null;
@@ -78,6 +87,10 @@ public class AppController {
         modelData.adjustComponentType(component, type);
     }
 
+    /**
+     * Given non-recurring component immediately returns.
+     * In the other case it fires the period adjustment method of the model.
+    */
     public static void adjustRecurrence(Component component, String period){
         if(component.getCategory().equals("income") || component.getCategory().equals("expense"))
             return;

@@ -19,7 +19,6 @@ import Enginear.eds.ExpenseTracker.model.ETheme;
 
 public class AppFrame extends JFrame{
     private ImageIcon appIcon = new ImageIcon("src/main/resources/Logo.png");
-    private Model modelData = new Model();
     private Sidebar sidebar = new Sidebar();
     private SideBarButton addTypeBtn = new SideBarButton("Add Type");
     private SideBarButton addComponentBtn = new SideBarButton("New Component");
@@ -45,18 +44,25 @@ public class AppFrame extends JFrame{
         setVisible(true);
     }
 
+    /**
+     * Assigning the proper forms to the button components on the side bar.
+     */
     private void setupButtons(){
         addComponentBtn.addActionListener(e -> replaceMainArea(new NewComponentForm()));
         addTypeBtn.addActionListener(e -> replaceMainArea(new NewFinancialTypeForm()));
         printBtn.addActionListener(e -> replaceMainArea(new PrintForm()));
     }
 
+    /**
+     * Adding hover styling to the buttons and placing them on the side panel.
+    */
     private void setupSidebar(){
         for(SideBarButton btn : List.of(addTypeBtn, addComponentBtn, printBtn, exportBtn, importBtn)){
             btn.addMouseListener(new HoverMouseAdapter());
             sidebar.add(btn);
         }
 
+        //Adding credit for the creator.
         JButton credit = new JButton("Made by EnginEar the protogen");
         credit.setIcon(appIcon);
         credit.setBorderPainted(false); 
@@ -67,8 +73,10 @@ public class AppFrame extends JFrame{
         sidebar.add(credit);
     }
 
+    /**
+     * Repainting the JFrame for update.
+    */
     public void updateView(){
-        modelData = AppController.getModelData();
         refreshFrames();
     }
 
@@ -78,6 +86,11 @@ public class AppFrame extends JFrame{
         this.repaint();
     }
 
+    /**
+     * Replaces the main content area found at the right of window.
+     * 
+     * @param replaceWith - The JPanel component to replace the current component.
+    */
     private void replaceMainArea(JPanel replaceWith){
         this.remove(currentMainAreaPanel);
         this.add(replaceWith,BorderLayout.CENTER);
@@ -85,11 +98,17 @@ public class AppFrame extends JFrame{
         refreshFrames();
     }
 
+    /**
+     * Public function for the form buttons to close it when clicked.
+    */
     public void submitEvent(){
         replaceMainArea(statementPanel);
         updateView();
     }
 
+    /**
+     * Initializes the financial panes as the default view of the application.
+    */
     private void createFinancialPanes(){
         this.add(statementPanel, BorderLayout.CENTER);
         currentMainAreaPanel = statementPanel;
