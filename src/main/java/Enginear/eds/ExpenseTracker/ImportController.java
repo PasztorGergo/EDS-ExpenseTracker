@@ -11,6 +11,13 @@ import com.fasterxml.jackson.core.JsonToken;
 import Enginear.eds.ExpenseTracker.model.FinancialType;
 
 public class ImportController {
+    /**
+     * Imports all financial type and component from an existing save of the application data.
+     * 
+     * If any financial type or component already present in the application, it won't be imported once more.
+     * 
+     * @param path - The location of the JSON file that will be imported.
+    */
     public static void readJsonFrom(String path){
         try {
             JsonParser parser = new JsonFactory().createParser(new File(path));
@@ -35,7 +42,7 @@ public class ImportController {
                                 if ("name".equals(subFieldName)) {
                                     name = parser.getValueAsString();
                                 } else if ("color".equals(subFieldName)) {
-                                    color = new Color(Integer.parseInt(parser.getValueAsString().replace("#", "0x")));
+                                    color = new Color(Integer.parseInt(parser.getValueAsString().replace("#", ""),16));
                                 }
                             }
                             
@@ -68,12 +75,9 @@ public class ImportController {
                                 final String searchName = type;
                                 FinancialType finType = AppController.getModelData().types.stream().filter(ti -> ti.getName().equals(searchName)).toList().get(0);
                                 
-                                /*Convert it to an if statement based on recurrance*/
-
-                                if(recurrance == null){
-                                    AppController.createNewComponent(componentName, name, finType, "" + amount);
-                                }else{
-                                    AppController.createNewComponent(componentName, name, finType, "" + amount, recurrance);
+                                final String search = name;
+                                if(AppController.getModelData().components.stream().filter(c -> c.getName().equals(search)).toList().isEmpty()){
+                                    createNewComponent(recurrance, componentName, name, finType, amount);
                                 }
                             }
                         }
@@ -82,6 +86,23 @@ public class ImportController {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Creates new financial component from the imported data with the help of the <code>AppController</code>.
+     * 
+     * @param recurrance - If the component to be created is recurring, it is a <code>String</code>. Otherwise, <code>null</code>.
+     * @param componentName - The category of the new financial component.
+     * @param name - The name of the new financial component.
+     * @param finType - The type of the new component.
+     * @param amount - The monetary value of the component in USD.
+    */
+    private static void createNewComponent(String recurrance, String componentName, String name, FinancialType finType, double amount){
+        if(recurrance == null){
+            AppController.createNewComponent(componentName, name, finType, "" + amount);
+        }else{
+            AppController.createNewComponent(componentName, name, finType, "" + amount, recurrance);
         }
     }
 }

@@ -1,7 +1,10 @@
 package Enginear.eds.ExpenseTracker;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 
 import Enginear.eds.ExpenseTracker.model.Asset;
@@ -15,6 +18,9 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.core.JsonFactory;
 
+/**
+ * The controller class for the application data export.
+*/
 public class ExportController {
     private ArrayList<Income> incomes = new ArrayList<>();
     private ArrayList<Expense> expenses = new ArrayList<>();
@@ -25,10 +31,15 @@ public class ExportController {
         sortItemsByCategory();
     }
 
+    /**
+     * Creates a <code>FileOutputStream</code> for th application data.
+     * 
+     * @param path - The location of the directory to where the <code>eds.json</code> will be exported.
+    */
     private FileOutputStream exportTo(String path){
         try{
-            FileOutputStream wr = new FileOutputStream(path);
-            return wr;
+            File file = new File(path, "eds.json");
+            return new FileOutputStream(file);
         }
         catch(IOException err){
             err.printStackTrace();
@@ -36,6 +47,9 @@ public class ExportController {
         }
     }
 
+    /**
+     * Groups all the existing financial component of the application.
+    */
     private void sortItemsByCategory(){
         for(Component item : AppController.getModelData().components){
             switch(item.getCategory()){
@@ -57,6 +71,12 @@ public class ExportController {
         }
     }
 
+    /**
+     * Using the Jackson library, this function parses the current application data and saves it to the
+     * given directory as <code>eds.json</code>.
+     * 
+     * @param path - The location of the directory to where the application data will be exported.
+    */
     public void StringifyModel(String path){
         try {
             JsonGenerator generator = new JsonFactory().createGenerator(exportTo(path));

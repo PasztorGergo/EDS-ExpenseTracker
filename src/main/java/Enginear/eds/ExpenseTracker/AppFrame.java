@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Enginear.eds.ExpenseTracker.View.LocationForm;
 import Enginear.eds.ExpenseTracker.View.NewComponentForm;
 import Enginear.eds.ExpenseTracker.View.NewFinancialTypeForm;
 import Enginear.eds.ExpenseTracker.View.PrintForm;
@@ -51,6 +52,8 @@ public class AppFrame extends JFrame{
         addComponentBtn.addActionListener(e -> replaceMainArea(new NewComponentForm()));
         addTypeBtn.addActionListener(e -> replaceMainArea(new NewFinancialTypeForm()));
         printBtn.addActionListener(e -> replaceMainArea(new PrintForm()));
+        importBtn.addActionListener(e -> new LocationForm(false));
+        exportBtn.addActionListener(e -> new LocationForm(true));
     }
 
     /**

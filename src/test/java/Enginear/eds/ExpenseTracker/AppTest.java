@@ -54,7 +54,6 @@ class AppTest {
         assertEquals(AppController.getModelData().types.get(1), comp.getType());
     }
 
-    @Test
     public void checkRecurringIncomeChange(){
 
     }
