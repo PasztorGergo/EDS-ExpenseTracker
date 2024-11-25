@@ -6,11 +6,6 @@ public class Income extends Component{
         super(name, type, amount);
     }
 
-    @Override
-    public String Stringify() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Stringify'");
-    }
     
     @Override
     public String getCategory(){

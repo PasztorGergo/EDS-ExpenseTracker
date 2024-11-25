@@ -15,9 +15,4 @@ public abstract class Recurring extends Component {
     public String getPeriod(){
         return period;
     }
-
-    @Override
-    public String Stringify(){
-        return String.format("{\n\t\"name\": \"%s\",\n\t\"amount\": %2.f,\n\t\"type\": \"%s\"}",this.getName(),this.getAmount(),this.getType().getName());
-    }
 }

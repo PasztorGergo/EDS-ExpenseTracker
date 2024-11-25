@@ -168,7 +168,34 @@ public class Model extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        Class<?>[] classes = {String.class, String.class, double.class, String.class};
+        Class<?>[] classes = {String.class, String.class, Double.class, String.class};
         return  classes[columnIndex];
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        if(columnIndex != 1){
+            return List.of("asset","liability").contains(components.get(rowIndex).getCategory()) || columnIndex != 3;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                adjustComponentName(components.get(rowIndex), (String)aValue);
+                break;
+            case 2:
+                adjustComponentAmount(components.get(rowIndex), (double)aValue);
+                break;
+            case 3:
+                adjustComponentPeriod((Recurring)components.get(rowIndex), (String)aValue);
+                break;
+            default:
+                return;
+        }
+        fireTableRowsUpdated(-1, components.size());
     }
 }
