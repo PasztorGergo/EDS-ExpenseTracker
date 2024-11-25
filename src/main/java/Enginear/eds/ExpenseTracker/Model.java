@@ -4,11 +4,17 @@ import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.table.AbstractTableModel;
+
+import Enginear.eds.ExpenseTracker.model.Asset;
 import Enginear.eds.ExpenseTracker.model.Component;
+import Enginear.eds.ExpenseTracker.model.Expense;
 import Enginear.eds.ExpenseTracker.model.FinancialType;
+import Enginear.eds.ExpenseTracker.model.Income;
+import Enginear.eds.ExpenseTracker.model.Liability;
 import Enginear.eds.ExpenseTracker.model.Recurring;
 
-public class Model {
+public class Model extends AbstractTableModel {
     public List<Component> components;
     public List<FinancialType> types;
     public List<Line2D> lines;
@@ -17,6 +23,33 @@ public class Model {
         components = new ArrayList<>();
         types = new ArrayList<>();
         lines = new ArrayList<>();
+    }
+
+    public void createNewComponent(String componentType, String name, FinancialType type, String ...args){
+        double amount = Double.parseDouble(args[0]);
+        String recurrence = args.length > 1 ? args[1] : null;
+        switch(componentType){
+            case "income":
+                components.add(new Income(name, type, amount));
+                break;
+
+            case "expense":
+                components.add(new Expense(name, type, amount));
+                break;
+
+            case "asset":
+                components.add(new Asset(name, type, amount, recurrence));
+                break;
+
+            case "liability":
+                components.add(new Liability(name, type, amount, recurrence));
+                break;
+
+            default:
+            //Hülye vagy fiam
+            break;
+        }
+        fireTableRowsInserted(-1, components.size());
     }
 
     /**
@@ -95,5 +128,47 @@ public class Model {
     */
     private boolean checkComponentExistance(Component component){
         return !(components.stream().filter(comp -> comp.equals(component)).toList().isEmpty());
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 4;
+    }
+
+    @Override
+    public int getRowCount() {
+        return components.size();
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return components.get(rowIndex).getName();
+            case 1:
+            return components.get(rowIndex).getType().getName();
+            case 2:
+                return components.get(rowIndex).getAmount();
+            case 3:
+                if(List.of("asset","liability").contains(components.get(rowIndex).getCategory()))
+                    return ((Recurring)components.get(rowIndex)).getPeriod();
+                else
+                    return "-";
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        String[] columnName = {"Name", "Type", "Amount", "Recurrance"};
+
+        return columnName[column];
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        Class<?>[] classes = {String.class, String.class, double.class, String.class};
+        return  classes[columnIndex];
     }
 }

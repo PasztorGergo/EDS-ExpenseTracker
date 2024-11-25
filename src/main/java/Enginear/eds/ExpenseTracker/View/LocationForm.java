@@ -29,6 +29,7 @@ public class LocationForm{
                 System.out.println(path);
                 ImportController.readJsonFrom(path);
             }
+            AppController.getFrame().updateView();
         }
 
     }

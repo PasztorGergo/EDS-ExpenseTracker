@@ -6,16 +6,17 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
+import Enginear.eds.ExpenseTracker.View.FinancialTable;
 import Enginear.eds.ExpenseTracker.View.LocationForm;
 import Enginear.eds.ExpenseTracker.View.NewComponentForm;
 import Enginear.eds.ExpenseTracker.View.NewFinancialTypeForm;
 import Enginear.eds.ExpenseTracker.View.PrintForm;
 import Enginear.eds.ExpenseTracker.View.SideBarButton;
 import Enginear.eds.ExpenseTracker.View.Sidebar;
-import Enginear.eds.ExpenseTracker.View.StatementPanel;
 import Enginear.eds.ExpenseTracker.model.ETheme;
 
 public class AppFrame extends JFrame{
@@ -26,8 +27,8 @@ public class AppFrame extends JFrame{
     private SideBarButton printBtn = new SideBarButton("Print");
     private SideBarButton exportBtn = new SideBarButton("Export");
     private SideBarButton importBtn = new SideBarButton("Import");
-    private JPanel currentMainAreaPanel;
-    private StatementPanel statementPanel = new StatementPanel();
+    private JComponent currentMainAreaPanel;
+    private FinancialTable financialTable = new FinancialTable(AppController.getModelData());
 
     public AppFrame(){
         setTitle("Expense-tracker | EnginEar's EDS");
@@ -38,7 +39,7 @@ public class AppFrame extends JFrame{
         getContentPane().setBackground(ETheme.BACKGROUND.getColor());
         setForeground(ETheme.WHITE.getColor());
         setLayout(new BorderLayout());
-        createFinancialPanes();
+        initFinancialTable();
         add(sidebar,BorderLayout.WEST);
         setupButtons();
         setupSidebar();
@@ -76,45 +77,39 @@ public class AppFrame extends JFrame{
         sidebar.add(credit);
     }
 
-    /**
-     * Repainting the JFrame for update.
-    */
-    public void updateView(){
-        refreshFrames();
+    private void initFinancialTable(){
+        JScrollPane scrollPane = new JScrollPane(financialTable);
+
+        currentMainAreaPanel = scrollPane;
+        this.add(scrollPane, BorderLayout.CENTER);
     }
 
-    private void refreshFrames(){
+    
+    public void updateView(){
         this.invalidate();
         this.validate();
         this.repaint();
     }
+
 
     /**
      * Replaces the main content area found at the right of window.
      * 
      * @param replaceWith - The JPanel component to replace the current component.
     */
-    private void replaceMainArea(JPanel replaceWith){
+    private void replaceMainArea(JComponent replaceWith){
         this.remove(currentMainAreaPanel);
         this.add(replaceWith,BorderLayout.CENTER);
         currentMainAreaPanel = replaceWith;
-        refreshFrames();
+        updateView();
     }
 
     /**
      * Public function for the form buttons to close it when clicked.
     */
     public void submitEvent(){
-        replaceMainArea(statementPanel);
+        replaceMainArea(financialTable);
         updateView();
-    }
-
-    /**
-     * Initializes the financial panes as the default view of the application.
-    */
-    private void createFinancialPanes(){
-        this.add(statementPanel, BorderLayout.CENTER);
-        currentMainAreaPanel = statementPanel;
     }
 
     private class HoverMouseAdapter extends MouseAdapter{

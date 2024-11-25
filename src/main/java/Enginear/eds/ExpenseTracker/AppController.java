@@ -49,29 +49,7 @@ public class AppController {
      * @param args - Strinified double and period if the component has recurring attribute
     */
     public static void createNewComponent(String componentType, String name, FinancialType type, String ...args){
-        double amount = Double.parseDouble(args[0]);
-        String recurrence = args.length > 1 ? args[1] : null;
-        switch(componentType){
-            case "income":
-                modelData.components.add(new Income(name, type, amount));
-                break;
-
-            case "expense":
-                modelData.components.add(new Expense(name, type, amount));
-                break;
-
-            case "asset":
-                modelData.components.add(new Asset(name, type, amount, recurrence));
-                break;
-
-            case "liability":
-                modelData.components.add(new Liability(name, type, amount, recurrence));
-                break;
-
-            default:
-            //Hülye vagy fiam
-            break;
-        }
+        modelData.createNewComponent(componentType, name, type, args);
         updateView();
     }
 
